@@ -74,14 +74,6 @@ class ASTRuleTests: XCTestCase {
                         reason: "Variable name should start with a lowercase character: 'Def'")
                     ])
 
-                XCTAssertEqual(violations("\(kind) Abc { \(varType) de: Void }\n"), [
-                    StyleViolation(type: .NameFormat,
-                        location: Location(file: nil, line: 1, character: characterOffset),
-                        severity: .Medium,
-                        reason: "Variable name should be between 3 and 40 characters in length: " +
-                        "'de'")
-                    ])
-
                 let longName = join("", Array(count: 40, repeatedValue: "d"))
                 XCTAssertEqual(violations("\(kind) Abc { \(varType) \(longName): Void }\n"), [])
                 let longerName = longName + "d"
@@ -89,7 +81,7 @@ class ASTRuleTests: XCTestCase {
                     StyleViolation(type: .NameFormat,
                         location: Location(file: nil, line: 1, character: characterOffset),
                         severity: .Medium,
-                        reason: "Variable name should be between 3 and 40 characters in length: " +
+                        reason: "Variable name should be between 2 and 40 characters in length: " +
                         "'\(longerName)'")
                     ])
             }

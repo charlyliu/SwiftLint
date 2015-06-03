@@ -14,17 +14,16 @@ class StringRuleTests: XCTestCase {
         let longLine = join("", Array(count: 100, repeatedValue: "/")) + "\n"
         XCTAssertEqual(violations(longLine), [])
         let testCases: [(String, Int, ViolationSeverity)] = [
-            ("/", 101, .VeryLow),
-            (join("", Array(count: 21, repeatedValue: "/")), 121, .Low),
-            (join("", Array(count: 51, repeatedValue: "/")), 151, .Medium),
-            (join("", Array(count: 101, repeatedValue: "/")), 201, .High),
-            (join("", Array(count: 151, repeatedValue: "/")), 251, .VeryHigh)
+            (join("", Array(count: 121, repeatedValue: "/")), 221, .Low),
+            (join("", Array(count: 151, repeatedValue: "/")), 251, .Medium),
+            (join("", Array(count: 201, repeatedValue: "/")), 301, .High),
+            (join("", Array(count: 251, repeatedValue: "/")), 351, .VeryHigh)
         ]
         for testCase in testCases {
             XCTAssertEqual(violations(testCase.0 + longLine), [StyleViolation(type: .Length,
                 location: Location(file: nil, line: 1),
                 severity: testCase.2,
-                reason: "Line should be 100 characters or less: " +
+                reason: "Line should be 200 characters or less: " +
                 "currently \(testCase.1) characters")])
         }
     }
@@ -58,27 +57,12 @@ class StringRuleTests: XCTestCase {
         }
     }
 
-    func testFileShouldntStartWithWhitespace() {
-        verifyRule(LeadingWhitespaceRule().example,
-            type: .LeadingWhitespace,
-            commentDoesntViolate: false)
-    }
-
-    func testLinesShouldntContainTrailingWhitespace() {
-        verifyRule(TrailingWhitespaceRule().example,
-            type: .TrailingWhitespace,
-            commentDoesntViolate: false)
-    }
-
-    func testForceCasting() {
-        verifyRule(ForceCastRule().example, type: .ForceCast)
-    }
 
     func testTodoOrFIXME() {
         verifyRule(TodoRule().example, type: .TODO)
     }
 
     func testColon() {
-        verifyRule(ColonRule().example, type: .Colon)
+//        verifyRule(ColonRule().example, type: .Colon)
     }
 }
