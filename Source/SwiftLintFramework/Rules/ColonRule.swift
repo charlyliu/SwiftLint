@@ -14,11 +14,9 @@ public struct ColonRule: Rule {
     public let identifier = "colon"
 
     public func validateFile(file: File) -> [StyleViolation] {
-        let pattern1 = file.matchPattern("\\w+\\s+:\\s*\\S+",
+        let pattern = file.matchPattern("\\w+:(?:\\s{0}|\\s{2,})\\w+",
             withSyntaxKinds: [.Identifier, .Typeidentifier])
-        let pattern2 = file.matchPattern("\\w+:(?:\\s{0}|\\s{2,})\\S+",
-            withSyntaxKinds: [.Identifier, .Typeidentifier])
-        return (pattern1 + pattern2).map { range in
+        return pattern.map { range in
             return StyleViolation(type: .Colon,
                 location: Location(file: file, offset: range.location),
                 severity: .Low,
