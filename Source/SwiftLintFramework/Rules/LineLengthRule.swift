@@ -14,11 +14,11 @@ public struct LineLengthRule: ParameterizedRule {
     public let identifier = "line_length"
 
     public let parameters = [
-        RuleParameter(severity: .VeryLow, value: 100),
-        RuleParameter(severity: .Low, value: 120),
-        RuleParameter(severity: .Medium, value: 150),
-        RuleParameter(severity: .High, value: 200),
-        RuleParameter(severity: .VeryHigh, value: 250)
+        RuleParameter(severity: .VeryLow, value: 200),
+        RuleParameter(severity: .Low, value: 220),
+        RuleParameter(severity: .Medium, value: 250),
+        RuleParameter(severity: .High, value: 300),
+        RuleParameter(severity: .VeryHigh, value: 350)
     ]
 
     public func validateFile(file: File) -> [StyleViolation] {
@@ -28,7 +28,7 @@ public struct LineLengthRule: ParameterizedRule {
                     return StyleViolation(type: .Length,
                         location: Location(file: file.path, line: line.index),
                         severity: parameter.severity,
-                        reason: "Line should be 100 characters or less: currently " +
+                        reason: "Line should be 200 characters or less: currently " +
                         "\(count(line.content)) characters")
                 }
             }
