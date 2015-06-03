@@ -73,7 +73,7 @@ public struct TypeNameRule: ASTRule {
     public let example = RuleExample(
         ruleName: "Type Name Rule",
         ruleDescription: "Type name should only contain alphanumeric characters, " +
-        "start with an uppercase character and between 3 and 40 characters in length.",
+        "start with an uppercase character and between 2 and 40 characters in length.",
         nonTriggeringExamples: [],
         triggeringExamples: [],
         showExamples: false

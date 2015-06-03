@@ -60,11 +60,11 @@ public struct VariableNameRule: ASTRule {
                     location: location,
                     severity: .High,
                     reason: "Variable name should start with a lowercase character: '\(name)'"))
-            } else if count(name) < 3 || count(name) > 40 {
+            } else if count(name) < 2 || count(name) > 40 {
                 violations.append(StyleViolation(type: .NameFormat,
                     location: location,
                     severity: .Medium,
-                    reason: "Variable name should be between 3 and 40 characters in length: " +
+                    reason: "Variable name should be between 2 and 40 characters in length: " +
                     "'\(name)'"))
             }
         }
@@ -74,7 +74,7 @@ public struct VariableNameRule: ASTRule {
     public let example = RuleExample(
         ruleName: "Variable Name Rule",
         ruleDescription: "Variable name should only contain alphanumeric characters, " +
-        "start with a a lowercase character and be between 3 and 40 characters in length.",
+        "start with a a lowercase character and be between 2 and 40 characters in length.",
         nonTriggeringExamples: [],
         triggeringExamples: [],
         showExamples: false
